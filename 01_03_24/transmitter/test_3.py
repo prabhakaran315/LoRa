@@ -15,20 +15,26 @@ counter=0
 def send_data():
     global timer_task
     global counter
-    amp = random.randint(-32768, 32767)
-    vol = random.randint(-32768, 32767)
-    ran = random.randint(-32768, 32767)
+    amp = [31, 22, 34, 12, 14]
+    vol = [32, 23, 35, 13, 15]
+    ran = [33, 24, 36, 14, 16]
+    counter += 1
     print("amp : ",amp)
     print("vol : ",vol)
     print("ran : ",ran)
-    amp_bytes = amp.to_bytes(2, byteorder='big', signed=True)
-    vol_bytes = vol.to_bytes(2, byteorder='big', signed=True)
-    ran_bytes = ran.to_bytes(2, byteorder='big', signed=True)
-    counter += 1
-    
-    data = amp_bytes + vol_bytes + ran_bytes
+    print("Counter : ", counter)
+    amp_bytes = b"".join(x.to_bytes(2, byteorder='big', signed=True) for x in amp)
+    vol_bytes = b"".join(x.to_bytes(2, byteorder='big', signed=True) for x in vol)
+    ran_bytes = b"".join(x.to_bytes(2, byteorder='big', signed=True) for x in ran)
+    con_bytes = counter.to_bytes(2, byteorder='big', signed=True)
+    #amp_bytes = amp.to_bytes(2, byteorder='big', signed=True)
+    #vol_bytes = vol.to_bytes(2, byteorder='big', signed=True)
+    #ran_bytes = ran.to_bytes(2, byteorder='big', signed=True)
 
-    counter += 1
+    
+    data = amp_bytes + vol_bytes + ran_bytes + con_bytes
+    #print(data)
+    #counter += 1
     #data = bytes([255]) + bytes([255]) + bytes([18]) + bytes([255]) + bytes([255]) + bytes([12]) + int(readings).encode() + int(counter).encode()
     #print("values : ", data)
     node.send(data)
