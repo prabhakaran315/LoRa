@@ -11,7 +11,7 @@ import random
 global counter
 import array
 counter=0
-#prabha
+
 def send_data():
     global timer_task
     global counter
@@ -44,10 +44,12 @@ def send_data():
     timer_task.start()
 
 
-old_settings = termios.tcgetattr(sys.stdin)
-tty.setcbreak(sys.stdin.fileno())
+#old_settings = termios.tcgetattr(sys.stdin)
+#ty.setcbreak(sys.stdin.fileno())
 node = sx1262.sx126x(serial_num = "/dev/ttyAMA0",freq=915,addr=0,power=22,rssi=True,air_speed=62500,relay=False)
 send_data()
+
+while
 try:
     time.sleep(1)
     seconds = 5
