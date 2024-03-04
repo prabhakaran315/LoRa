@@ -24,7 +24,7 @@ def receive_1():
         #vol = int.from_bytes(vol_bytes, byteorder='big', signed=True)
         #ran = int.from_bytes(ran_bytes, byteorder='big', signed=True)
 
-        print("Encoded values : ", data_2)
+        #print("Encoded values : ", data_2)
         print("amp:", amp)
         print("vol:", vol)
         print("ran:", ran)
@@ -34,8 +34,8 @@ def receive_1():
         node.send(response_data)
     else:
         pass
-old_settings = termios.tcgetattr(sys.stdin)
-tty.setcbreak(sys.stdin.fileno())
+#old_settings = termios.tcgetattr(sys.stdin)
+#tty.setcbreak(sys.stdin.fileno())
 
 node = sx1262_1.sx126x(serial_num = "/dev/ttyAMA0",freq=915,addr=0,power=22,rssi=True,air_speed=2400,relay=False)
 
