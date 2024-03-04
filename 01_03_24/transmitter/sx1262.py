@@ -194,12 +194,13 @@ class sx126x:
                     # print("parameters setting fail :",r_buff)
                 break
             else:
-                print("setting fail,setting again")
+                #print("setting fail,setting again")
                 self.ser.flushInput()
                 time.sleep(0.2)
-                print('\x1b[1A', end='\r')
+                #print('\x1b[1A', end='\r')
                 if i == 1:
-                    print("setting fail,Press Esc to Exit and run again")
+                    pass
+                    #print("setting fail,Press Esc to Exit and run again")
                     # time.sleep(2)
                     # print('\x1b[1A',end='\r')
 
@@ -244,7 +245,7 @@ class sx126x:
         # if self.rssi == True:
         # self.get_channel_rssi()
         time.sleep(0.5)
-
+        sx126x().get_settings()
     def receive(self):
         if self.ser.inWaiting() > 5:
             time.sleep(0.5)

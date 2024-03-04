@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import serial
 import time
-import test_2
+#import test_2
 class sx126x:
     M0 = 22
     M1 = 27
@@ -14,7 +14,6 @@ class sx126x:
     addr = 35
     serial_n = ""
     addr_temp = 20
-
     #
     # start frequence of two lora module
     #
