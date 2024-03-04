@@ -37,7 +37,7 @@ def receive_1():
 #old_settings = termios.tcgetattr(sys.stdin)
 #tty.setcbreak(sys.stdin.fileno())
 
-node = sx1262_1.sx126x(serial_num = "/dev/ttyAMA0",freq=915,addr=0,power=22,rssi=True,air_speed=2400,relay=False)
+node = sx1262_1.sx126x(serial_num = "/dev/ttyAMA0",freq=915,addr=0,power=22,rssi=True,air_speed=62500,relay=False)
 
 while True:
     receive_1()
