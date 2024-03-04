@@ -30,7 +30,7 @@ def receive_1():
         print("ran:", ran)
         print("Counter : ", con)
 
-        response_data = bytes([255]) + bytes([255]) + bytes([18]) + bytes([255]) + bytes([255]) + bytes([12]) + b"Response message"
+        response_data = bytes([255]) + bytes([255]) + bytes([18]) + bytes([255]) + bytes([255]) + bytes([12]) + b"Data received Successfully by receiver"
         node.send(response_data)
     else:
         pass
