@@ -2,8 +2,9 @@ import RPi.GPIO as GPIO
 import serial
 import time
 
+
 class SX126x:
-    def __init__(self, serial_num="/dev/ttyAMA0", freq=878, my_addr=1, power=22, rssi=False):
+    def __init__(self, serial_num="/dev/ttyAMA0", freq=915, my_addr=1, power=22, rssi=False):
         self.M0 = 22
         self.M1 = 27
         self.serial_n = serial_num
@@ -38,12 +39,13 @@ class SX126x:
         else:
             print("Configuration failed")
 
-    def send(self, data, dest_addr):
+    def send(self, data, destination_address):
         GPIO.output(self.M1, GPIO.LOW)
         GPIO.output(self.M0, GPIO.LOW)
         time.sleep(0.5)
         # Prepare data packet with destination address
-        packet = bytes([dest_addr]) + data
+        packet = bytes([destination_address]) + data
+        print(packet)
         self.ser.write(packet)
         time.sleep(0.5)
 
@@ -53,22 +55,23 @@ class SX126x:
             return received_data
 
 # Initialize and configure each LoRa module
-lora1 = SX126x(serial_num="/dev/ttyAMA0", freq=868, my_addr=1, power=22, rssi=False)
-lora2 = SX126x(serial_num="/dev/ttyAMA1", freq=868, my_addr=2, power=22, rssi=False)
-lora3 = SX126x(serial_num="/dev/ttyAMA2", freq=868, my_addr=3, power=22, rssi=False)
+lora1 = SX126x(serial_num="/dev/ttyAMA0", freq=915, my_addr=1, power=22, rssi=False)
+lora2 = SX126x(serial_num="/dev/ttyAMA0", freq=915, my_addr=2, power=22, rssi=False)
+lora3 = SX126x(serial_num="/dev/ttyAMA0", freq=915, my_addr=3, power=22, rssi=False)
 
 lora1.set_config()
 lora2.set_config()
 lora3.set_config()
-
+while True:
 # Send data from lora1 to lora2
-data_to_send = b"Hello from lora1"
-destination_address = 2
-lora1.send(data_to_send, destination_address)
+    data = b"Hello from lora1"
+    destination_address = 2
+    lora1.send(data, destination_address)
 
 # Receive data on lora2
-received_data = lora2.receive()
-print("Received data on lora2:", received_data)
+while True:
+    received_data = lora2.receive()
+    print("Received data on lora2:", received_data)
 
 # Send data from lora3 to lora2
 data_to_send = b"Hello from lora3"

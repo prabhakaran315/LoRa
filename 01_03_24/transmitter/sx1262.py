@@ -22,7 +22,7 @@ class sx126x:
     # 410~493MHz      or    850~930MHz
     start_freq = 850
 
-    #
+    #w
     # offset between start and end frequence of two lora module
     #
     # E22-400T22S           E22-900T22S
