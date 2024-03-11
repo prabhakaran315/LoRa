@@ -11,9 +11,9 @@ class sx126x:
     cfg_reg = [0xC2, 0x00, 0x09, 0x00, 0x00, 0x00, 0x62, 0x00, 0x12, 0x43, 0x00, 0x00]
     get_reg = bytes(12)
     rssi = False
-    addr = 35
+    addr = 65535
     serial_n = ""
-    addr_temp = 20
+    addr_temp = 0
 
     #
     # start frequence of two lora module
